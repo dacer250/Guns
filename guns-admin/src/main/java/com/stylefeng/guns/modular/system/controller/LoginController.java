@@ -14,6 +14,8 @@ import com.stylefeng.guns.core.util.ToolUtil;
 import com.stylefeng.guns.modular.system.model.User;
 import com.stylefeng.guns.modular.system.service.IMenuService;
 import com.stylefeng.guns.modular.system.service.IUserService;
+import io.swagger.annotations.ApiOperation;
+import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
@@ -119,6 +123,44 @@ public class LoginController extends BaseController {
         ShiroKit.getSession().setAttribute("sessionFlag", true);
 
         return REDIRECT + "/";
+    }
+
+    @ApiOperation("登录接口")
+    @RequestMapping(value = "/rest/login", method = RequestMethod.POST)
+    @ResponseBody
+    public String rest_login(@RequestParam String username,
+                             @RequestParam String password
+                             ) {
+
+
+        String remember = "on";//super.getPara("remember");
+
+        Subject currentUser = ShiroKit.getSubject();
+        UsernamePasswordToken token = new UsernamePasswordToken(username, password.toCharArray());
+
+        if ("on".equals(remember)) {
+            token.setRememberMe(true);
+        } else {
+            token.setRememberMe(false);
+        }
+
+        try {
+            currentUser.login(token);
+        }
+        catch (AuthenticationException e)
+        {
+            return "error";
+        }
+
+        ShiroUser shiroUser = ShiroKit.getUser();
+        super.getSession().setAttribute("shiroUser", shiroUser);
+        super.getSession().setAttribute("username", shiroUser.getAccount());
+
+        LogManager.me().executeLog(LogTaskFactory.loginLog(shiroUser.getId(), getIp()));
+
+        ShiroKit.getSession().setAttribute("sessionFlag", true);
+
+        return "success";
     }
 
     /**
