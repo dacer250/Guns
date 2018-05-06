@@ -10,8 +10,8 @@ import org.springframework.context.annotation.Configuration;
  * @author fengshuonan
  * @date 2017-12-02 23:18
  */
-@Configuration
-@ConfigurationProperties(prefix = GunsFlowableProperties.GUNS_FLOWABLE_DATASOURCE)
+//@Configuration
+//@ConfigurationProperties(prefix = GunsFlowableProperties.GUNS_FLOWABLE_DATASOURCE)
 public class GunsFlowableProperties {
 
     public static final String GUNS_FLOWABLE_DATASOURCE = "guns.flowable.datasource";

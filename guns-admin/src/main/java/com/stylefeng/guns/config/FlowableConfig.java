@@ -20,7 +20,7 @@ import java.io.IOException;
  * @author fengshuonan
  * @date 2017-12-02 22:28
  */
-@Configuration
+//@Configuration
 public class FlowableConfig extends AbstractProcessEngineAutoConfiguration {
 
     @Autowired

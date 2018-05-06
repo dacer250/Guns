@@ -23,8 +23,8 @@ import java.util.Map;
  * @author fengshuonan
  * @Date 2017-12-04 21:11:36
  */
-@Controller
-@RequestMapping("/expense")
+//@Controller
+//@RequestMapping("/expense")
 public class ExpenseController extends BaseController {
 
     private String PREFIX = "/flowable/expense/";

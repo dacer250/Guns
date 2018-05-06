@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @author fengshuonan
  * @Date 2017-12-04 21:11:36
  */
-@Controller
-@RequestMapping("/process")
+//@Controller
+//@RequestMapping("/process")
 public class ProcessController extends BaseController {
 
     private String PREFIX = "/flowable/process/";
