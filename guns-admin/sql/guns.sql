@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50718
 File Encoding         : 65001
 
-Date: 2018-05-05 11:22:26
+Date: 2018-05-06 13:06:01
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -3239,7 +3239,7 @@ CREATE TABLE `sys_login_log` (
   `message` text COMMENT '具体消息',
   `ip` varchar(255) DEFAULT NULL COMMENT '登录ip',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=223 DEFAULT CHARSET=utf8 COMMENT='登录记录';
+) ENGINE=InnoDB AUTO_INCREMENT=239 DEFAULT CHARSET=utf8 COMMENT='登录记录';
 
 -- ----------------------------
 -- Records of sys_login_log
@@ -3251,6 +3251,22 @@ INSERT INTO `sys_login_log` VALUES ('219', '登录失败日志', null, '2018-05-
 INSERT INTO `sys_login_log` VALUES ('220', '登录日志', '1', '2018-05-05 11:02:29', '成功', null, '0:0:0:0:0:0:0:1');
 INSERT INTO `sys_login_log` VALUES ('221', '登录日志', '1', '2018-05-05 11:03:02', '成功', null, '0:0:0:0:0:0:0:1');
 INSERT INTO `sys_login_log` VALUES ('222', '登录日志', '1', '2018-05-05 11:16:34', '成功', null, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES ('223', '退出日志', '1', '2018-05-05 12:08:20', '成功', null, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES ('224', '登录日志', '1', '2018-05-05 14:14:17', '成功', null, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES ('225', '登录日志', '1', '2018-05-05 14:16:15', '成功', null, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES ('226', '登录日志', '1', '2018-05-05 15:04:25', '成功', null, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES ('227', '登录日志', '1', '2018-05-05 15:08:11', '成功', null, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES ('228', '登录日志', '1', '2018-05-05 15:16:11', '成功', null, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES ('229', '登录日志', '1', '2018-05-05 16:11:45', '成功', null, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES ('230', '登录日志', '1', '2018-05-05 16:15:38', '成功', null, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES ('231', '登录日志', '1', '2018-05-05 16:19:26', '成功', null, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES ('232', '登录日志', '1', '2018-05-06 12:44:18', '成功', null, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES ('233', '登录日志', '1', '2018-05-06 12:53:08', '成功', null, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES ('234', '登录日志', '1', '2018-05-06 12:54:16', '成功', null, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES ('235', '登录日志', '1', '2018-05-06 12:55:48', '成功', null, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES ('236', '登录日志', '1', '2018-05-06 12:57:11', '成功', null, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES ('237', '登录日志', '1', '2018-05-06 12:58:42', '成功', null, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES ('238', '登录日志', '1', '2018-05-06 13:01:00', '成功', null, '0:0:0:0:0:0:0:1');
 
 -- ----------------------------
 -- Table structure for sys_menu
