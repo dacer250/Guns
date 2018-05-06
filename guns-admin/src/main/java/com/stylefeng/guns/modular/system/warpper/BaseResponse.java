@@ -3,7 +3,7 @@ package com.stylefeng.guns.modular.system.warpper;
 
 import java.io.Serializable;
 
-public class BaseResponse<T> implements Serializable {
+public class BaseResponse<T>  {
     /**
      * 是否成功
      */

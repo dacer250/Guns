@@ -1,5 +1,6 @@
 package com.stylefeng.guns.modular.system.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.stylefeng.guns.config.properties.EstWaveConfig;
 import com.stylefeng.guns.config.properties.GunsProperties;
 import com.stylefeng.guns.core.base.controller.BaseController;
@@ -65,10 +66,10 @@ public class JeansController extends BaseController {
 
 
 
-    @PostMapping("/upload")
+    @PostMapping("/getJeansChoices")
     @ResponseBody
-    @ApiOperation("上传客户基础数据/cm,kg")
-    public BaseResponse<List<Spitem>> upload(@RequestParam BigDecimal height,
+    @ApiOperation("上传客户基础数据/cm,kg，获取待选的型号列表")
+    public Object getJeansChoices(@RequestParam BigDecimal height,
                                          @RequestParam BigDecimal weight,
                                          @RequestParam(required = false) DressType dressType) {
 
@@ -87,8 +88,26 @@ public class JeansController extends BaseController {
         logParam("waiting list",itemList);
         List<Spitem> choiceList =standardService.scoresTop3(itemList,ej);
         logParam("choiceList ",choiceList);
-        return new BaseResponse<List<Spitem>>(true,null,choiceList);
+        return   choiceList  ;
     }
 
+    @PostMapping("/getEstJeans")
+    @ResponseBody
+    @ApiOperation("上传客户基础数据/cm,kg，获得预估尺寸")
+    public Object upload(@RequestParam BigDecimal height,
+                         @RequestParam BigDecimal weight,
+                         @RequestParam(required = false) DressType dressType) {
+        BigDecimal h = new BigDecimal( BigDecimalUtil.toInt(height));
+        BigDecimal w =new BigDecimal(BigDecimalUtil.toInt(weight));
+        Standard st =standardService.getStandardByHW(h,w);
+        logParam("standard",st);
+        //只上传身高体重，则返回标准数据
+        EstJean ej =standardService.estByStandard(st);
+        if(dressType==null)
+            dressType =DressType.Standard;
+        standardService.adjustByDresstype(ej,dressType);
+        logParam("EstJean",ej);
+        return ej;
 
+    }
 }
