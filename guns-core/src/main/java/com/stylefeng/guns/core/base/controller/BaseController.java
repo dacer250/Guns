@@ -1,11 +1,14 @@
 package com.stylefeng.guns.core.base.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.stylefeng.guns.core.base.tips.SuccessTip;
 import com.stylefeng.guns.core.base.warpper.BaseControllerWarpper;
 import com.stylefeng.guns.core.page.PageInfoBT;
 import com.stylefeng.guns.core.support.HttpKit;
 import com.stylefeng.guns.core.util.FileUtil;
+import jdk.nashorn.internal.runtime.JSONFunctions;
+import org.apache.log4j.Logger;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -24,6 +27,14 @@ public class BaseController {
 
     protected static String REDIRECT = "redirect:";
     protected static String FORWARD = "forward:";
+
+    public static Logger logger =Logger.getLogger(BaseController.class);
+
+
+    public void logParam(String info,Object o)
+    {
+        System.out.println("--->"+info+"-->"+ JSON.toJSONString(o));
+    }
 
     protected static SuccessTip SUCCESS_TIP = new SuccessTip();
 
