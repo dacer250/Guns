@@ -33,6 +33,7 @@ import com.stylefeng.guns.modular.system.transfer.UserDto;
 import com.stylefeng.guns.modular.system.warpper.BaseResponse;
 import com.stylefeng.guns.modular.system.warpper.UserWarpper;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -71,11 +72,14 @@ public class JeansController extends BaseController {
     @ApiOperation("上传客户基础数据/cm,kg，获取待选的型号列表")
     public Object getJeansChoices(@RequestParam BigDecimal height,
                                          @RequestParam BigDecimal weight,
+                                    @RequestParam(required = false) Integer male,
                                          @RequestParam(required = false) DressType dressType) {
 
         BigDecimal h = new BigDecimal( BigDecimalUtil.toInt(height));
         BigDecimal w =new BigDecimal(BigDecimalUtil.toInt(weight));
-        Standard st =standardService.getStandardByHW(h,w);
+        if(male==null)
+            male=1;
+        Standard st =standardService.getStandardByHW(h,w,male);
         logParam("standard",st);
         //只上传身高体重，则返回标准数据
        EstJean ej =standardService.estByStandard(st);
@@ -96,10 +100,13 @@ public class JeansController extends BaseController {
     @ApiOperation("上传客户基础数据/cm,kg，获得预估尺寸")
     public Object upload(@RequestParam BigDecimal height,
                          @RequestParam BigDecimal weight,
+                         @RequestParam(required = false) @ApiParam(value  = "0:女，1:男") Integer gender,
                          @RequestParam(required = false) DressType dressType) {
         BigDecimal h = new BigDecimal( BigDecimalUtil.toInt(height));
         BigDecimal w =new BigDecimal(BigDecimalUtil.toInt(weight));
-        Standard st =standardService.getStandardByHW(h,w);
+        if(gender==null)
+            gender =1;
+        Standard st =standardService.getStandardByHW(h,w,gender);
         logParam("standard",st);
         //只上传身高体重，则返回标准数据
         EstJean ej =standardService.estByStandard(st);

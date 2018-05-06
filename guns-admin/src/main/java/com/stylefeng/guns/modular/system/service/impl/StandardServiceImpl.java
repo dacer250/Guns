@@ -31,8 +31,8 @@ public class StandardServiceImpl extends ServiceImpl<StandardMapper, Standard> i
 
 
     @Override
-    public Standard getStandardByHW(BigDecimal h, BigDecimal w) {
-        return baseMapper.getByHW(h,w);
+    public Standard getStandardByHW(BigDecimal h, BigDecimal w,int g) {
+        return baseMapper.getByHW(h,w,g);
     }
 
     @Override

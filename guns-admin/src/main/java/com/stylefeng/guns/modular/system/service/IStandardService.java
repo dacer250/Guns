@@ -23,7 +23,7 @@ import java.util.Map;
  */
 public interface IStandardService extends IService<Standard> {
 
-    Standard getStandardByHW(@Param("h") BigDecimal h,@Param("weight") BigDecimal w);
+    Standard getStandardByHW(@Param("h") BigDecimal h,@Param("weight") BigDecimal w,int g);
 
     EstJean estByStandard(Standard st);
 

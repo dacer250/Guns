@@ -19,7 +19,7 @@
 	</resultMap>
 
 	 <select id="getByHW" resultType="com.stylefeng.guns.modular.system.model.Standard">
-		 select * from standard_male where height= #{h} and weight=#{w}
+		 select * from standard_inch where height= #{h} and weight=#{w} and gender =#{g}
 	 </select>
 
 	<select id="findSpitemList"

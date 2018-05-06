@@ -8,11 +8,13 @@ import com.baomidou.mybatisplus.enums.IdType;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
-@TableName("standard_male")
+@TableName("standard_inch")
 public class Standard extends Model<Standard>{
 
     @TableId(value="id", type= IdType.AUTO)
     private Integer id;
+
+    private Integer gender;
 
     BigDecimal height;
 
@@ -32,6 +34,14 @@ public class Standard extends Model<Standard>{
 
     BigDecimal crotch;
     BigDecimal length;
+
+    public Integer getGender() {
+        return gender;
+    }
+
+    public void setGender(Integer gender) {
+        this.gender = gender;
+    }
 
     public Integer getId() {
         return id;

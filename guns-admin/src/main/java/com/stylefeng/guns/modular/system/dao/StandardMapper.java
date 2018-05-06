@@ -23,7 +23,7 @@ import java.util.Map;
 public interface StandardMapper extends BaseMapper<Standard> {
 
 
-    Standard getByHW(@Param("h") BigDecimal h,@Param("w") BigDecimal w);
+    Standard getByHW(@Param("h") BigDecimal h,@Param("w") BigDecimal w,@Param("g") Integer g);
 
 
     List<Spitem> findSpitemList();

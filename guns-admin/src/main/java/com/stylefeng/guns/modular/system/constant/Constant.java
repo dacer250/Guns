@@ -9,4 +9,7 @@ public class Constant {
      * 候选列表最多3个
      */
     public static final int TOPCHOICE =3;
+
+    public static final int MALE=1;
+    public static final int FEMALE=0;
 }
