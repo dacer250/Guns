@@ -58,6 +58,7 @@ import java.util.UUID;
  */
 @Controller
 @RequestMapping("/jeans")
+@CrossOrigin
 public class JeansController extends BaseController {
 
 
