@@ -82,6 +82,8 @@ public class JeansController extends BaseController {
             male=1;
         Standard st =standardService.getStandardByHW(h,w,male);
         logParam("standard",st);
+        if(st==null)
+            return  new BaseResponse<Standard>(false,"未找到标准尺寸",st);
         //只上传身高体重，则返回标准数据
        EstJean ej =standardService.estByStandard(st);
        if(dressType==null)
@@ -93,7 +95,7 @@ public class JeansController extends BaseController {
         logParam("waiting list",itemList);
         List<Spitem> choiceList =standardService.scoresTop3(itemList,ej);
         logParam("choiceList ",choiceList);
-        return   choiceList  ;
+        return   new BaseResponse< List<Spitem> >(true,"",choiceList)  ;
     }
 
     @PostMapping("/getEstJeans")
@@ -108,6 +110,8 @@ public class JeansController extends BaseController {
         if(gender==null)
             gender =1;
         Standard st =standardService.getStandardByHW(h,w,gender);
+        if(st==null)
+           return  new BaseResponse<Standard>(false,"未找到标准尺寸",st);
         logParam("standard",st);
         //只上传身高体重，则返回标准数据
         EstJean ej =standardService.estByStandard(st);
@@ -115,7 +119,7 @@ public class JeansController extends BaseController {
             dressType =DressType.Standard;
         standardService.adjustByDresstype(ej,dressType);
         logParam("EstJean",ej);
-        return ej;
+        return new BaseResponse<EstJean>(true,"",ej);
 
     }
 }
