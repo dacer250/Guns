@@ -57,7 +57,7 @@ import java.util.UUID;
  * @Date 2017年1月11日 下午1:08:17
  */
 @Controller
-@RequestMapping("/jeans")
+@RequestMapping("/api/v1/jeans")
 @CrossOrigin
 public class JeansController extends BaseController {
 
