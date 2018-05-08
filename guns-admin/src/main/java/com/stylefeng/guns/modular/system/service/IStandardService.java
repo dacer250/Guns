@@ -32,4 +32,6 @@ public interface IStandardService extends IService<Standard> {
     List<Spitem> findSpitemList();
 
     List<Spitem> scoresTop3(List<Spitem> itemList,EstJean ej);
+
+    void adjustByExprience(EstJean ej);
 }

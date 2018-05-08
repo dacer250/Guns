@@ -53,7 +53,6 @@ import java.util.UUID;
 /**
  * 牛仔裤
  *
- *
  * @Date 2017年1月11日 下午1:08:17
  */
 @Controller
@@ -62,40 +61,39 @@ import java.util.UUID;
 public class JeansController extends BaseController {
 
 
-
     @Autowired
     private IStandardService standardService;
-
 
 
     @PostMapping("/getJeansChoices")
     @ResponseBody
     @ApiOperation("上传客户基础数据/cm,kg，获取待选的型号列表")
     public Object getJeansChoices(@RequestParam BigDecimal height,
-                                         @RequestParam BigDecimal weight,
-                                    @RequestParam(required = false) Integer male,
-                                         @RequestParam(required = false) DressType dressType) {
+                                  @RequestParam BigDecimal weight,
+                                  @RequestParam(required = false) Integer male,
+                                  @RequestParam(required = false) DressType dressType) {
 
-        BigDecimal h = new BigDecimal( BigDecimalUtil.toInt(height));
-        BigDecimal w =new BigDecimal(BigDecimalUtil.toInt(weight));
-        if(male==null)
-            male=1;
-        Standard st =standardService.getStandardByHW(h,w,male);
-        logParam("standard",st);
-        if(st==null)
-            return  new BaseResponse<Standard>(false,"未找到标准尺寸",st);
+        BigDecimal h = new BigDecimal(BigDecimalUtil.toInt(height));
+        BigDecimal w = new BigDecimal(BigDecimalUtil.toInt(weight));
+        if (male == null)
+            male = 1;
+        Standard st = standardService.getStandardByHW(h, w, male);
+        logParam("standard", st);
+        if (st == null)
+            return new BaseResponse<Standard>(false, "未找到标准尺寸", st);
         //只上传身高体重，则返回标准数据
-       EstJean ej =standardService.estByStandard(st);
-       if(dressType==null)
-           dressType =DressType.Standard;
-        standardService.adjustByDresstype(ej,dressType);
-        logParam("EstJean",ej);
+        EstJean ej = standardService.estByStandard(st);
+        if (dressType == null)
+            dressType = DressType.Standard;
+        standardService.adjustByDresstype(ej, dressType);
+        standardService.adjustByExprience(ej);
+        logParam("EstJean", ej);
 
-        List<Spitem> itemList =standardService.findSpitemList();
-        logParam("waiting list",itemList);
-        List<Spitem> choiceList =standardService.scoresTop3(itemList,ej);
-        logParam("choiceList ",choiceList);
-        return   new BaseResponse< List<Spitem> >(true,"",choiceList)  ;
+        List<Spitem> itemList = standardService.findSpitemList();
+        logParam("waiting list", itemList);
+        List<Spitem> choiceList = standardService.scoresTop3(itemList, ej);
+        logParam("choiceList ", choiceList);
+        return new BaseResponse<List<Spitem>>(true, "", choiceList);
     }
 
     @PostMapping("/getEstJeans")
@@ -103,23 +101,25 @@ public class JeansController extends BaseController {
     @ApiOperation("上传客户基础数据/cm,kg，获得预估尺寸")
     public Object upload(@RequestParam BigDecimal height,
                          @RequestParam BigDecimal weight,
-                         @RequestParam(required = false) @ApiParam(value  = "0:女，1:男") Integer gender,
+                         @RequestParam(required = false) @ApiParam(value = "0:女，1:男") Integer gender,
                          @RequestParam(required = false) DressType dressType) {
-        BigDecimal h = new BigDecimal( BigDecimalUtil.toInt(height));
-        BigDecimal w =new BigDecimal(BigDecimalUtil.toInt(weight));
-        if(gender==null)
-            gender =1;
-        Standard st =standardService.getStandardByHW(h,w,gender);
-        if(st==null)
-           return  new BaseResponse<Standard>(false,"未找到标准尺寸",st);
-        logParam("standard",st);
+        BigDecimal h = new BigDecimal(BigDecimalUtil.toInt(height));
+        BigDecimal w = new BigDecimal(BigDecimalUtil.toInt(weight));
+        if (gender == null)
+            gender = 1;
+        Standard st = standardService.getStandardByHW(h, w, gender);
+        if (st == null)
+            return new BaseResponse<Standard>(false, "未找到标准尺寸", st);
+        logParam("standard", st);
         //只上传身高体重，则返回标准数据
-        EstJean ej =standardService.estByStandard(st);
-        if(dressType==null)
-            dressType =DressType.Standard;
-        standardService.adjustByDresstype(ej,dressType);
-        logParam("EstJean",ej);
-        return new BaseResponse<EstJean>(true,"",ej);
+        EstJean ej = standardService.estByStandard(st);
+        if (dressType == null)
+            dressType = DressType.Standard;
+        standardService.adjustByDresstype(ej, dressType);
+
+        standardService.adjustByExprience(ej);
+        logParam("EstJean", ej);
+        return new BaseResponse<EstJean>(true, "", ej);
 
     }
 }

@@ -110,6 +110,11 @@ public class StandardServiceImpl extends ServiceImpl<StandardMapper, Standard> i
         return ret;
     }
 
+    @Override
+    public void adjustByExprience(EstJean ej) {
+        ej.setWaist(ej.getWaist().subtract(new BigDecimal(2.5)));
+    }
+
     private Float calcScore(Spitem item,EstJean ej,Map<String,String>w) {
 
         float waistScore =getWaistScore(item.getWaist(),ej.getWaist(),w.get("waist"));
