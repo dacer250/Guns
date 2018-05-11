@@ -45,10 +45,7 @@ import javax.naming.NoPermissionException;
 import javax.validation.Valid;
 import java.io.File;
 import java.math.BigDecimal;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * 牛仔裤
@@ -119,7 +116,14 @@ public class JeansController extends BaseController {
 
         standardService.adjustByExprience(ej);
         logParam("EstJean", ej);
-        return new BaseResponse<EstJean>(true, "", ej);
 
+        // Covert it to sorted result so that the front-end could represent them by order.
+        LinkedHashMap<String, BigDecimal> sortedResult = new LinkedHashMap<> ();
+        sortedResult.put ("waist", ej.getWaist ());
+        sortedResult.put ("hip", ej.getHip ());
+        sortedResult.put ("crotch", ej.getCrotch ());
+        sortedResult.put ("length", ej.getLength ());
+        sortedResult.put ("bottom", ej.getBottom ());
+        return new BaseResponse<LinkedHashMap<String, BigDecimal>>(true, "", sortedResult);
     }
 }
