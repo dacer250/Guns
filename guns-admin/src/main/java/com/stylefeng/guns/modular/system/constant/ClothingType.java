@@ -2,9 +2,10 @@ package com.stylefeng.guns.modular.system.constant;
 
 /**
  * 服装类型（品类）
+ *
  * @author Liangzhou Liu 2018/03/24
  */
-public enum  ClothingType {
+public enum ClothingType {
     A("上衣"),
 
     B("裤子"),
@@ -17,21 +18,25 @@ public enum  ClothingType {
 
     F("夹克"),
 
-    G("礼服"),
+    G("礼服套装"),
+
+    H("风衣"),
+
+    I("休闲裤"),
 
     Q("旗袍"),
 
+    S("裙子")
+    /*,
+
     R("羽绒服"),
-
-    S("裙子"),
-
     Y("配饰"),
 
     Z("皮鞋"),
 
     A_B_C("西服套装"),
 
-    OTHER("其他");
+    OTHER("其他")*/;
 
     /**
      * 中文

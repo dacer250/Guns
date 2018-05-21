@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.stylefeng.guns.modular.system.dao.CraftworkMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.stylefeng.guns.modular.system.model.Craftwork">
+        <id column="id" property="id" />
+        <result column="clothing_gender" property="clothingGender" />
+        <result column="clothing_type" property="clothingType" />
+        <result column="craftwork_name" property="craftworkName" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, clothing_gender AS clothingGender, clothing_type AS clothingType, craftwork_name AS craftworkName
+    </sql>
+    <select id="list" resultType="map">
+        SELECT  * from craftwork
+        <if test="condition != null and condition.gender!=null and condition.gender != ''">
+            where clothing_gender =#{condition.gender}
+            <if test="condition != null and condition.type!=null and condition.type != ''">
+                and clothing_type =#{condition.type}
+            </if>
+        </if>
+        order by id ASC
+    </select>
+</mapper>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.stylefeng.guns.modular.system.dao.SpecialPartDesignMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.stylefeng.guns.modular.system.model.SpecialPartDesign">
+        <id column="id" property="id" />
+        <result column="special_part_id" property="specialPartId" />
+        <result column="design_choice" property="designChoice" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, special_part_id AS specialPartId, design_choice AS designChoice
+    </sql>
+    <select id="list" resultType="map">
+        SELECT  * from special_part_design
+        <if test="condition != null ">
+            where special_part_id =#{condition}
+        </if>
+        order by id ASC
+    </select>
+</mapper>
