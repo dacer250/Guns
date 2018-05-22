@@ -8,6 +8,7 @@ import com.stylefeng.guns.modular.system.warpper.BaseResponse;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -99,6 +100,12 @@ public class InchDesignController extends BaseController {
     @ResponseBody
     @ApiOperation("新增配件")
     public Object add(@ApiParam @RequestBody InchDesign inchDesign) {
+        if(inchDesign==null)
+            return new BaseResponse<InchDesign>(false,"param is null",inchDesign);
+        if(!StringUtils.isEmpty(inchDesign.getNetKey())  && !StringUtils.isEmpty(inchDesign.getClothingType()))
+        {
+            inchDesign.setClothingKey(inchDesign.getClothingType().toLowerCase()+"_"+inchDesign.getNetKey());
+        }
         inchDesignService.insert(inchDesign);
         return new BaseResponse<InchDesign>(true,"success",inchDesign);
     }
