@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : localhost
-Source Server Version : 50718
-Source Host           : localhost:3306
+Source Server         : jeans
+Source Server Version : 50722
+Source Host           : jeans-api.youcai6.com:3306
 Source Database       : guns_flowable
 
 Target Server Type    : MYSQL
-Target Server Version : 50718
+Target Server Version : 50722
 File Encoding         : 65001
 
-Date: 2018-05-06 16:03:26
+Date: 2018-05-22 14:40:05
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -353,6 +353,22 @@ CREATE TABLE `act_id_bytearray` (
 -- ----------------------------
 
 -- ----------------------------
+-- Table structure for ACT_ID_BYTEARRAY
+-- ----------------------------
+DROP TABLE IF EXISTS `ACT_ID_BYTEARRAY`;
+CREATE TABLE `ACT_ID_BYTEARRAY` (
+  `ID_` varchar(64) COLLATE utf8_bin NOT NULL,
+  `REV_` int(11) DEFAULT NULL,
+  `NAME_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `BYTES_` longblob,
+  PRIMARY KEY (`ID_`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- ----------------------------
+-- Records of ACT_ID_BYTEARRAY
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for act_id_group
 -- ----------------------------
 DROP TABLE IF EXISTS `act_id_group`;
@@ -366,6 +382,22 @@ CREATE TABLE `act_id_group` (
 
 -- ----------------------------
 -- Records of act_id_group
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for ACT_ID_GROUP
+-- ----------------------------
+DROP TABLE IF EXISTS `ACT_ID_GROUP`;
+CREATE TABLE `ACT_ID_GROUP` (
+  `ID_` varchar(64) COLLATE utf8_bin NOT NULL,
+  `REV_` int(11) DEFAULT NULL,
+  `NAME_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `TYPE_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  PRIMARY KEY (`ID_`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- ----------------------------
+-- Records of ACT_ID_GROUP
 -- ----------------------------
 
 -- ----------------------------
@@ -389,6 +421,26 @@ CREATE TABLE `act_id_info` (
 -- ----------------------------
 
 -- ----------------------------
+-- Table structure for ACT_ID_INFO
+-- ----------------------------
+DROP TABLE IF EXISTS `ACT_ID_INFO`;
+CREATE TABLE `ACT_ID_INFO` (
+  `ID_` varchar(64) COLLATE utf8_bin NOT NULL,
+  `REV_` int(11) DEFAULT NULL,
+  `USER_ID_` varchar(64) COLLATE utf8_bin DEFAULT NULL,
+  `TYPE_` varchar(64) COLLATE utf8_bin DEFAULT NULL,
+  `KEY_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `VALUE_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `PASSWORD_` longblob,
+  `PARENT_ID_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  PRIMARY KEY (`ID_`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- ----------------------------
+-- Records of ACT_ID_INFO
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for act_id_membership
 -- ----------------------------
 DROP TABLE IF EXISTS `act_id_membership`;
@@ -406,6 +458,20 @@ CREATE TABLE `act_id_membership` (
 -- ----------------------------
 
 -- ----------------------------
+-- Table structure for ACT_ID_MEMBERSHIP
+-- ----------------------------
+DROP TABLE IF EXISTS `ACT_ID_MEMBERSHIP`;
+CREATE TABLE `ACT_ID_MEMBERSHIP` (
+  `USER_ID_` varchar(64) COLLATE utf8_bin NOT NULL,
+  `GROUP_ID_` varchar(64) COLLATE utf8_bin NOT NULL,
+  PRIMARY KEY (`USER_ID_`,`GROUP_ID_`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- ----------------------------
+-- Records of ACT_ID_MEMBERSHIP
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for act_id_priv
 -- ----------------------------
 DROP TABLE IF EXISTS `act_id_priv`;
@@ -417,6 +483,20 @@ CREATE TABLE `act_id_priv` (
 
 -- ----------------------------
 -- Records of act_id_priv
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for ACT_ID_PRIV
+-- ----------------------------
+DROP TABLE IF EXISTS `ACT_ID_PRIV`;
+CREATE TABLE `ACT_ID_PRIV` (
+  `ID_` varchar(64) COLLATE utf8_bin NOT NULL,
+  `NAME_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  PRIMARY KEY (`ID_`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- ----------------------------
+-- Records of ACT_ID_PRIV
 -- ----------------------------
 
 -- ----------------------------
@@ -440,6 +520,24 @@ CREATE TABLE `act_id_priv_mapping` (
 -- ----------------------------
 
 -- ----------------------------
+-- Table structure for ACT_ID_PRIV_MAPPING
+-- ----------------------------
+DROP TABLE IF EXISTS `ACT_ID_PRIV_MAPPING`;
+CREATE TABLE `ACT_ID_PRIV_MAPPING` (
+  `ID_` varchar(64) COLLATE utf8_bin NOT NULL,
+  `PRIV_ID_` varchar(64) COLLATE utf8_bin NOT NULL,
+  `USER_ID_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `GROUP_ID_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  PRIMARY KEY (`ID_`),
+  KEY `ACT_IDX_PRIV_USER` (`USER_ID_`),
+  KEY `ACT_IDX_PRIV_GROUP` (`GROUP_ID_`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- ----------------------------
+-- Records of ACT_ID_PRIV_MAPPING
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for act_id_property
 -- ----------------------------
 DROP TABLE IF EXISTS `act_id_property`;
@@ -454,6 +552,22 @@ CREATE TABLE `act_id_property` (
 -- Records of act_id_property
 -- ----------------------------
 INSERT INTO `act_id_property` VALUES ('schema.version', '6.2.0.0', '1');
+
+-- ----------------------------
+-- Table structure for ACT_ID_PROPERTY
+-- ----------------------------
+DROP TABLE IF EXISTS `ACT_ID_PROPERTY`;
+CREATE TABLE `ACT_ID_PROPERTY` (
+  `NAME_` varchar(64) COLLATE utf8_bin NOT NULL,
+  `VALUE_` varchar(300) COLLATE utf8_bin DEFAULT NULL,
+  `REV_` int(11) DEFAULT NULL,
+  PRIMARY KEY (`NAME_`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- ----------------------------
+-- Records of ACT_ID_PROPERTY
+-- ----------------------------
+INSERT INTO `ACT_ID_PROPERTY` VALUES ('schema.version', '6.2.0.0', '1');
 
 -- ----------------------------
 -- Table structure for act_id_token
@@ -476,6 +590,26 @@ CREATE TABLE `act_id_token` (
 -- ----------------------------
 
 -- ----------------------------
+-- Table structure for ACT_ID_TOKEN
+-- ----------------------------
+DROP TABLE IF EXISTS `ACT_ID_TOKEN`;
+CREATE TABLE `ACT_ID_TOKEN` (
+  `ID_` varchar(64) COLLATE utf8_bin NOT NULL,
+  `REV_` int(11) DEFAULT NULL,
+  `TOKEN_VALUE_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `TOKEN_DATE_` timestamp(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3) ON UPDATE CURRENT_TIMESTAMP(3),
+  `IP_ADDRESS_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `USER_AGENT_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `USER_ID_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `TOKEN_DATA_` varchar(2000) COLLATE utf8_bin DEFAULT NULL,
+  PRIMARY KEY (`ID_`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- ----------------------------
+-- Records of ACT_ID_TOKEN
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for act_id_user
 -- ----------------------------
 DROP TABLE IF EXISTS `act_id_user`;
@@ -492,6 +626,25 @@ CREATE TABLE `act_id_user` (
 
 -- ----------------------------
 -- Records of act_id_user
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for ACT_ID_USER
+-- ----------------------------
+DROP TABLE IF EXISTS `ACT_ID_USER`;
+CREATE TABLE `ACT_ID_USER` (
+  `ID_` varchar(64) COLLATE utf8_bin NOT NULL,
+  `REV_` int(11) DEFAULT NULL,
+  `FIRST_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `LAST_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `EMAIL_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `PWD_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `PICTURE_ID_` varchar(64) COLLATE utf8_bin DEFAULT NULL,
+  PRIMARY KEY (`ID_`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- ----------------------------
+-- Records of ACT_ID_USER
 -- ----------------------------
 
 -- ----------------------------
