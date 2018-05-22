@@ -17,12 +17,13 @@
     </sql>
 
     <select id="list" resultType="map">
-        SELECT * from body_part
+        SELECT * from body_part WHERE 1=1
         <if test="condition != null and condition.gender!=null and condition.gender != ''">
-            where clothing_gender =#{condition.gender}
-            <if test="condition != null and condition.type!=null and condition.type != ''">
-                and clothing_type =#{condition.type}
-            </if>
+           and   clothing_gender =#{condition.gender}
+
+        </if>
+        <if test="condition != null and condition.type!=null and condition.type != ''">
+            and clothing_type =#{condition.type}
         </if>
         order by id ASC
     </select>

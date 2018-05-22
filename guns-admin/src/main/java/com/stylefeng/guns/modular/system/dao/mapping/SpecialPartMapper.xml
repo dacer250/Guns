@@ -16,12 +16,13 @@
         id, clothing_gender AS clothingGender, clothing_type AS clothingType, special_part_key AS specialPartKey, special_part_name AS specialPartName
     </sql>
     <select id="list" resultType="map">
-        SELECT  * from special_part
+        SELECT  * from special_part WHERE 1=1
         <if test="condition != null and condition.gender!=null and condition.gender != ''">
-            where clothing_gender =#{condition.gender}
-            <if test="condition != null and condition.position!=null and condition.position != ''">
-                and body_position =#{condition.position}
-            </if>
+            and clothing_gender =#{condition.gender}
+
+        </if>
+        <if test="condition != null and condition.position!=null and condition.position != ''">
+            and body_position =#{condition.position}
         </if>
         order by id ASC
     </select>
