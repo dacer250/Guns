@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.stylefeng.guns.modular.system.dao.InchDesignMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.stylefeng.guns.modular.system.model.InchDesign">
+        <id column="id" property="id" />
+        <result column="net_key" property="netKey" />
+        <result column="name" property="name" />
+        <result column="clothing_type" property="clothingType" />
+        <result column="clothing_gender" property="clothingGender" />
+        <result column="clothing_key" property="clothingKey" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, net_key AS netKey, name, clothing_type AS clothingType, clothing_gender AS clothingGender, LOWER( clothing_key) AS clothingKey
+    </sql>
+
+    <select id="list" resultType="map">
+        SELECT <include refid="Base_Column_List"></include> from inch_design WHERE 1=1
+        <if test="condition != null and condition.gender!=null and condition.gender != ''">
+            AND  clothing_gender =#{condition.gender}
+        </if>
+        <if test="condition != null and condition.type!=null and condition.type != ''">
+            and clothing_type =#{condition.type}
+        </if>
+        <if test="condition != null and condition.net_key!=null and condition.net_key != ''">
+            and net_key like CONCAT('%',#{condition.net_key},'%')
+        </if>
+        <if test="condition != null and condition.clothing_key!=null and condition.clothing_key != ''">
+            and clothing_key like CONCAT('%',#{condition.clothing_key},'%')
+        </if>
+        <if test="condition != null and condition.name!=null and condition.name != ''">
+            and name like CONCAT('%',#{condition.name},'%')
+        </if>
+        order by id ASC
+    </select>
+
+</mapper>
