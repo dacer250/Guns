@@ -9,6 +9,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,15 +71,17 @@ public class BodyPartController extends BaseController {
     @ResponseBody
     @ApiOperation("部位列表")
     public Object list(@RequestParam(required = false)ClothingGender gender,
-                       @RequestParam(required = false)ClothingType type ) {
+                       @RequestParam(required = false)ClothingType type ,
+                       @RequestParam(required = false)String ownerId) {
 
         Map<String ,String> map =new HashMap<>();
         if(gender!=null)
             map.put("gender",gender.name());
         if(type!=null)
             map.put("type",type.name());
+        if(!StringUtils.isEmpty(ownerId))
+            map.put("ownerId",ownerId);
          List<BodyPart> list=(List<BodyPart>) bodyPartService.list(map);
-        //return bodyPartService.selectList(map);
         return new BaseResponse<List< BodyPart >>(true, "", list);
     }
 

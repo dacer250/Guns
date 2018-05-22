@@ -34,7 +34,6 @@ public class AccessoryPart extends Model<AccessoryPart> {
     private String accessoryPartName;
 
     @TableField("ownerId")
-
     private String ownerId;
 
 

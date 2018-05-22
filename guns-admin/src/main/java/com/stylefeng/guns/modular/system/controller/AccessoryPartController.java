@@ -8,6 +8,7 @@ import com.stylefeng.guns.modular.system.warpper.BaseResponse;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,7 +77,7 @@ public class AccessoryPartController extends BaseController {
             map.put("gender",gender.name());
         if(type!=null)
             map.put("type",type.name());
-        if(ownerId!=null)
+        if(!StringUtils.isEmpty(ownerId))
             map.put("ownerId",ownerId);
         List<AccessoryPart> list=(List<AccessoryPart>) accessoryPartService.list(map);
         //return bodyPartService.selectList(map);

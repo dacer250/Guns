@@ -9,11 +9,13 @@
         <result column="clothing_type" property="clothingType" />
         <result column="body_part_key" property="bodyPartKey" />
         <result column="body_part_name" property="bodyPartName" />
+        <result column="ownerId" property="ownerId" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id, clothing_gender AS clothingGender, clothing_type AS clothingType, body_part_key AS bodyPartKey, body_part_name AS bodyPartName
+        id, clothing_gender AS clothingGender, clothing_type AS clothingType, body_part_key AS bodyPartKey,
+         body_part_name AS bodyPartName,ownerId
     </sql>
 
     <select id="list" resultType="map">
@@ -24,6 +26,9 @@
         </if>
         <if test="condition != null and condition.type!=null and condition.type != ''">
             and clothing_type =#{condition.type}
+        </if>
+        <if test="condition != null and condition.ownerId!=null and condition.ownerId != ''">
+            and  (ownerId =#{condition.ownerId} OR ownerId IS null)
         </if>
         order by id ASC
     </select>

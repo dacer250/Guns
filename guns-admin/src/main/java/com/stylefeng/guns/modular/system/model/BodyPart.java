@@ -42,6 +42,17 @@ public class BodyPart extends Model<BodyPart> {
 
     private String bodyPartName;
 
+    @TableField("ownerId")
+    private String ownerId;
+
+
+    public String getOwnerId() {
+        return ownerId;
+    }
+
+    public void setOwnerId(String ownerId) {
+        this.ownerId = ownerId;
+    }
 
     public Integer getId() {
         return id;
