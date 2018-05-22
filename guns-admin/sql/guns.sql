@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50722
 File Encoding         : 65001
 
-Date: 2018-05-22 15:17:07
+Date: 2018-05-22 17:59:02
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -25,17 +25,18 @@ CREATE TABLE `accessory_part` (
   `clothing_type` varchar(10) DEFAULT NULL,
   `accessory_part_key` varchar(20) DEFAULT NULL,
   `accessory_part_name` varchar(40) DEFAULT NULL,
+  `ownerId` varchar(50) DEFAULT NULL COMMENT '工厂ID',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of accessory_part
 -- ----------------------------
-INSERT INTO `accessory_part` VALUES ('1', 'M', '衬衫', 'shoulder', '肩配件');
-INSERT INTO `accessory_part` VALUES ('2', 'M', '衬衫', 'down', '下摆配件');
-INSERT INTO `accessory_part` VALUES ('3', 'F', '衬衫', 'xxx', '测试配件');
-INSERT INTO `accessory_part` VALUES ('4', 'M', 'A', 'key', '名字配件');
-INSERT INTO `accessory_part` VALUES ('5', 'M', 'X', 'ac', 'AC');
+INSERT INTO `accessory_part` VALUES ('1', 'M', '衬衫', 'shoulder', '肩配件', '1');
+INSERT INTO `accessory_part` VALUES ('2', 'M', '衬衫', 'down', '下摆配件', '2');
+INSERT INTO `accessory_part` VALUES ('3', 'F', '衬衫', 'xxx', '测试配件', null);
+INSERT INTO `accessory_part` VALUES ('4', 'M', 'A', 'key', '名字配件', null);
+INSERT INTO `accessory_part` VALUES ('5', 'M', 'X', 'ac', 'AC', null);
 
 -- ----------------------------
 -- Table structure for accessory_part_design
@@ -45,14 +46,15 @@ CREATE TABLE `accessory_part_design` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `accessory_part_id` int(20) DEFAULT NULL,
   `design_choice` varchar(255) DEFAULT NULL,
+  `ownerId` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of accessory_part_design
 -- ----------------------------
-INSERT INTO `accessory_part_design` VALUES ('1', '1', '宽');
-INSERT INTO `accessory_part_design` VALUES ('2', '1', '窄');
+INSERT INTO `accessory_part_design` VALUES ('1', '1', '宽', '');
+INSERT INTO `accessory_part_design` VALUES ('2', '1', '窄', null);
 
 -- ----------------------------
 -- Table structure for base_data_item
@@ -235,6 +237,26 @@ CREATE TABLE `est_cloth_male` (
 -- ----------------------------
 -- Records of est_cloth_male
 -- ----------------------------
+
+-- ----------------------------
+-- Table structure for inch_design
+-- ----------------------------
+DROP TABLE IF EXISTS `inch_design`;
+CREATE TABLE `inch_design` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `net_key` varchar(40) DEFAULT NULL COMMENT '净尺寸key',
+  `name` varchar(40) DEFAULT NULL COMMENT '净尺寸名称',
+  `clothing_type` varchar(20) DEFAULT NULL,
+  `clothing_gender` varchar(10) DEFAULT NULL,
+  `clothing_key` varchar(40) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of inch_design
+-- ----------------------------
+INSERT INTO `inch_design` VALUES ('1', 'neck', '领围', 'A', 'M', 'A_neck');
+INSERT INTO `inch_design` VALUES ('2', 'sleeve', '袖长', 'A', 'M', 'a_sleeve');
 
 -- ----------------------------
 -- Table structure for sp

@@ -2,6 +2,7 @@ package com.stylefeng.guns.modular.system.model;
 
 import java.io.Serializable;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import com.baomidou.mybatisplus.enums.IdType;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableField;
@@ -28,7 +29,16 @@ public class AccessoryPartDesign extends Model<AccessoryPartDesign> {
     private Integer accessoryPartId;
     @TableField("design_choice")
     private String designChoice;
+    @TableField("ownerId")
+    private String ownerId;
 
+    public void setOwnerId(String ownerId) {
+        this.ownerId = ownerId;
+    }
+
+    public String getOwnerId() {
+        return ownerId;
+    }
 
     public Integer getId() {
         return id;
@@ -63,6 +73,7 @@ public class AccessoryPartDesign extends Model<AccessoryPartDesign> {
     public String toString() {
         return "AccessoryPartDesign{" +
         "id=" + id +
+        ",ownerId=" + ownerId +
         ", accessoryPartId=" + accessoryPartId +
         ", designChoice=" + designChoice +
         "}";

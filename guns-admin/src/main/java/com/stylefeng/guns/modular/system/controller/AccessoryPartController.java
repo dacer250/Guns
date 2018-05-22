@@ -68,13 +68,16 @@ public class AccessoryPartController extends BaseController {
     @ResponseBody
     @ApiOperation ("配件列表")
     public Object list(@RequestParam(required = false)ClothingGender gender,
-                       @RequestParam(required = false)ClothingType type ) {
+                       @RequestParam(required = false)ClothingType type ,
+                     @RequestParam(required = false)String ownerId) {
 
         Map<String ,String> map =new HashMap<>();
         if(gender!=null)
             map.put("gender",gender.name());
         if(type!=null)
             map.put("type",type.name());
+        if(ownerId!=null)
+            map.put("ownerId",ownerId);
         List<AccessoryPart> list=(List<AccessoryPart>) accessoryPartService.list(map);
         //return bodyPartService.selectList(map);
         return new BaseResponse<List< AccessoryPart >>(true, "", list);
