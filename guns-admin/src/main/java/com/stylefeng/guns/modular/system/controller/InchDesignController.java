@@ -5,6 +5,7 @@ import com.stylefeng.guns.modular.system.constant.ClothingGender;
 import com.stylefeng.guns.modular.system.constant.ClothingType;
 import com.stylefeng.guns.modular.system.model.AccessoryPart;
 import com.stylefeng.guns.modular.system.warpper.BaseResponse;
+import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.stereotype.Controller;
@@ -70,9 +71,9 @@ public class InchDesignController extends BaseController {
     @ApiOperation ( "尺寸定义列表" )
     public Object list(@ApiParam @RequestParam ( required = false ) ClothingGender gender,
                        @ApiParam @RequestParam ( required = false ) ClothingType type,
-                       @ApiParam @RequestParam ( required = false ) String clothingKey,
-                       @ApiParam @RequestParam ( required = false ) String name,
-                       @ApiParam @RequestParam ( required = false ) String netKey) {
+                       @ApiParam (value = "成衣key") @RequestParam ( required = false ) String clothingKey,
+                       @ApiParam (value = "部位名称")@RequestParam ( required = false ) String name,
+                       @ApiParam (value = "净尺寸key")@RequestParam ( required = false ) String netKey) {
 
         Map<String, String> map = new HashMap<>();
 
