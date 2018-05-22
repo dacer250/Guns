@@ -24,9 +24,9 @@ import java.util.List;
  * @author fengshuonan
  * @date 2017-05-23 22:56
  */
-@Configuration("defaultFastjsonConfig")
-@ConditionalOnClass(com.alibaba.fastjson.JSON.class)
-@ConditionalOnMissingBean(FastJsonHttpMessageConverter.class)
+@Configuration ( "defaultFastjsonConfig" )
+@ConditionalOnClass ( com.alibaba.fastjson.JSON.class )
+@ConditionalOnMissingBean ( FastJsonHttpMessageConverter.class )
 @ConditionalOnWebApplication
 public class DefaultFastjsonConfig {
 
