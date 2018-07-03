@@ -77,11 +77,11 @@ mybatis-plus:
 spring:
   profiles: dev
   datasource:
-    url: jdbc:mysql://jeans-api.youcai6.com:3306/guns?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false
+    url: jdbc:mysql://127.0.0.1:3306/rmtest?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false
     username: root
-    passwordx: root
-    password: 4710418240
-    db-name: guns
+    password: root
+    passwordx: 4710418240
+    db-name: rmtest
     filters: log4j,stat,mergeStat
 
 
@@ -92,22 +92,4 @@ logging:
   path: d:/temp/logs/
   file: guns.log
 
----
-
-##########################################################
-###################  正式环境的profile  ###################
-##########################################################
-spring:
-  profiles: produce
-  datasource:
-      url: jdbc:mysql://127.0.0.1:3306/guns?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false
-      username: root
-      #password: root
-      password: 4710418240
-      filters: log4j,mergeStat
-
-logging:
-  level.root: warn
-  path: logs/
-  file: guns.log
 
